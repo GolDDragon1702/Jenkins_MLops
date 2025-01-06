@@ -1,4 +1,4 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
 from typing import Dict
 import uvicorn
 
@@ -10,11 +10,16 @@ def get_version() -> Dict[str, str]:
 
 @app.get("/check_prime/{number}")
 def check_prime(number: int) -> Dict[str, bool]:
+    if not isinstance(number, int):
+        raise HTTPException(status_code=400, detail="Input should be a valid integer")
+    
     if number < 2:
         return {"is_prime": False}
+    
     for i in range(2, int(number ** 0.5) + 1):
         if number % i == 0:
             return {"is_prime": False}
+    
     return {"is_prime": True}
 
 if __name__ == "__main__":
