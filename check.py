@@ -9,8 +9,8 @@ test_cases = [
     (49, {"is_prime": False}),
     (53, {"is_prime": True}),
     (100, {"is_prime": False}),
-    (0.1, {"detail": [{'type': 'int_parsing', 'loc': ['path', 'number'], 'msg': 'Input should be a valid integer, unable to parse string as an integer', 'input': '0.1'}]}),
-    (1.5, {"detail": [{'type': 'int_parsing', 'loc': ['path', 'number'], 'msg': 'Input should be a valid integer, unable to parse string as an integer', 'input': '1.5'}]}),
+    (997, {"is_prime": True}),
+    (0.1, {'detail': [{'type': 'int_parsing', 'loc': ['path', 'number'], 'msg': 'Input should be a valid integer, unable to parse string as an integer', 'input': '0.1'}]}),
     (-0.5, {"detail": [{'type': 'int_parsing', 'loc': ['path', 'number'], 'msg': 'Input should be a valid integer, unable to parse string as an integer', 'input': '-0.5'}]}),
     (-5, {"detail": [{'type': 'int_parsing', 'loc': ['path', 'number'], 'msg': 'Input should be a valid integer, unable to parse string as an integer', 'input': '-5'}]}),
 ]
