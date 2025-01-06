@@ -79,7 +79,8 @@ pipeline {
                     try {
                         sh '''
                         # Run tests
-                        python check.py
+                        python3 --version
+                        python3 check.py
                         '''
                         withChecks('Run Tests') {
                             publishChecks name: 'Run Tests', status: 'COMPLETED', conclusion: 'SUCCESS',
