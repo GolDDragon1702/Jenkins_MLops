@@ -78,9 +78,8 @@ pipeline {
                 script {
                     try {
                         sh '''
-                        # Run tests
-                        pip3 install fastapi
-                        python3 check.py
+                        echo "Running tests inside Docker container..."
+                        docker exec api_running python3 check.py
                         '''
                         withChecks('Run Tests') {
                             publishChecks name: 'Run Tests', status: 'COMPLETED', conclusion: 'SUCCESS',
