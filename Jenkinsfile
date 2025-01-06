@@ -79,7 +79,10 @@ pipeline {
         stage('Install pytest') {
             steps {
                 sh '''
-                sudo apt install pipx
+                python3 -m pip install --user pipx
+                python3 -m pipx ensurepath
+                export PATH=$PATH:~/.local/bin
+                
                 pipx install pytest
                 pipx run pytest --version
                 '''
