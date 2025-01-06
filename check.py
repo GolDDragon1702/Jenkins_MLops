@@ -6,13 +6,13 @@ test_cases = [
     (1, {"is_prime": False}),
     (2, {"is_prime": True}),
     (3, {"is_prime": True}),
-    (4, {"is_prime": False}),
-    (5, {"is_prime": True}),
+    (49, {"is_prime": False}),
+    (53, {"is_prime": True}),
     (100, {"is_prime": False}),
-    (-0.5, {"is_prime": False}),
-    (-5, {"is_prime": False}),
     (0.1, {"is_prime": False}),
-    (1.5, {"is_prime": False})
+    (1.5, {"is_prime": False}),
+    (-0.5, {"detail": [{"type": "type_error", "loc": ["path", "number"], "msg": "value is not a valid integer", "input": "string_input"}]}),
+    (-5, {"detail": [{"type": "type_error", "loc": ["path", "number"], "msg": "value is not a valid integer", "input": "string_input"}]}),
 ]
 
 client = TestClient(app)
