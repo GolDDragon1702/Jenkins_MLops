@@ -18,12 +18,6 @@ pipeline {
     }
 
     stages {
-        stage('Start Pipeline') {
-                steps {
-                    echo 'Pipeline execution has started.'
-                }
-            }
-
         stage('Clone Repository') {
             steps {
                 git branch: "main", url: 'https://github.com/GolDDragon1702/Jenkins_MLops.git'
@@ -51,13 +45,9 @@ pipeline {
                         fi
 
                         # Build and run the FastAPI container
-                        echo "Building the Docker image..."
                         docker build -t api .
-
-                        echo "Running the Docker container..."
                         docker run --name api_running -p 80:80 -d api
                         '''
-
                         withChecks('Run FastAPI App') {
                             publishChecks name: 'Run FastAPI App', status: 'COMPLETED', conclusion: 'SUCCESS',
                                          summary: 'FastAPI container built and running successfully.'
@@ -73,7 +63,7 @@ pipeline {
             }
         }
         
-        stage('Run Tests') {
+        stage('Testing') {
             steps {
                 script {
                     try {
@@ -81,13 +71,13 @@ pipeline {
                         echo "Running tests inside Docker container..."
                         docker exec api_running python3 check.py
                         '''
-                        withChecks('Run Tests') {
-                            publishChecks name: 'Run Tests', status: 'COMPLETED', conclusion: 'SUCCESS',
+                        withChecks('Testing') {
+                            publishChecks name: 'Testing', status: 'COMPLETED', conclusion: 'SUCCESS',
                                          summary: 'All tests passed successfully.'
                         }
                     } catch (e) {
-                        withChecks('Run Tests') {
-                            publishChecks name: 'Run Tests', status: 'COMPLETED', conclusion: 'FAILURE',
+                        withChecks('Testing') {
+                            publishChecks name: 'Testing', status: 'COMPLETED', conclusion: 'FAILURE',
                                          summary: 'Some tests failed.'
                         }
                         throw e
