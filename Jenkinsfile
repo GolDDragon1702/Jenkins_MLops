@@ -14,14 +14,11 @@ pipeline {
     }
 
     options {
-        skipDefaultCheckout() // Prevent automatic checkout
+        skipDefaultCheckout()
     }
 
     stages {
         stage('Start Pipeline') {
-                // withChecks('Run FastAPI App') {
-                //     publishChecks name: 'Run FastAPI App', status: 'IN_PROGRESS', summary: 'Pipeline execution has started.'
-                // }
                 steps {
                     echo 'Pipeline execution has started.'
                 }
@@ -76,26 +73,13 @@ pipeline {
             }
         }
         
-        stage('Install pytest') {
-            steps {
-                sh '''
-                python3 -m pip install --user pipx
-                python3 -m pipx ensurepath
-                export PATH=$PATH:~/.local/bin
-                
-                pipx install pytest
-                pipx run pytest --version
-                '''
-            }
-        }
-
         stage('Run Tests') {
             steps {
                 script {
                     try {
                         sh '''
                         # Run tests
-                        python3 -m pytest --junitxml=test-results.xml
+                        python check.py
                         '''
                         withChecks('Run Tests') {
                             publishChecks name: 'Run Tests', status: 'COMPLETED', conclusion: 'SUCCESS',
