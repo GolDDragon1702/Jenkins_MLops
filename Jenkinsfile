@@ -19,8 +19,11 @@ pipeline {
 
     stages {
         stage('Start Pipeline') {
-                withChecks('Run FastAPI App') {
-                    publishChecks name: 'Run FastAPI App', status: 'IN_PROGRESS', summary: 'Pipeline execution has started.'
+                // withChecks('Run FastAPI App') {
+                //     publishChecks name: 'Run FastAPI App', status: 'IN_PROGRESS', summary: 'Pipeline execution has started.'
+                // }
+                steps {
+                    echo 'Pipeline execution has started.'
                 }
             }
 
