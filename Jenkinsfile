@@ -79,7 +79,7 @@ pipeline {
                     try {
                         sh '''
                         # Run tests
-                        python3 --version
+                        pip3 install fastapi
                         python3 check.py
                         '''
                         withChecks('Run Tests') {
