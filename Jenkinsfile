@@ -79,6 +79,7 @@ pipeline {
         stage('Check pytest') {
             steps {
                 sh '''
+                pip install pytest
                 which pytest
                 pytest --version
                 '''
@@ -91,7 +92,7 @@ pipeline {
                     try {
                         sh '''
                         # Run tests
-                        pytest --junitxml=test-results.xml
+                        python3 -m pytest --junitxml=test-results.xml
                         '''
                         withChecks('Run Tests') {
                             publishChecks name: 'Run Tests', status: 'COMPLETED', conclusion: 'SUCCESS',
