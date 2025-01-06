@@ -19,12 +19,10 @@ pipeline {
 
     stages {
         stage('Start Pipeline') {
-            steps {
                 withChecks('Run FastAPI App') {
                     publishChecks name: 'Run FastAPI App', status: 'IN_PROGRESS', summary: 'Pipeline execution has started.'
                 }
             }
-        }
 
         stage('Clone Repository') {
             steps {

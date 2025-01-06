@@ -16,8 +16,6 @@ def check_prime(number: int) -> Dict[str, bool]:
         if number % i == 0:
             return {"is_prime": False}
     return {"is_prime": True}
-#added comment test 2
-
 
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=80)
