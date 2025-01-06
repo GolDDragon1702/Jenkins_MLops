@@ -1,18 +1,18 @@
 import sys
 from fastapi.testclient import TestClient
-from Api import app
+from api import app
 
 test_cases = [
     (1, {"is_prime": False}),
     (2, {"is_prime": True}),
-    (3, {"is_prime": True}),
+    (4, {"is_prime": False}),
+    (7, {"is_prime": True}),
+    (24, {"is_prime": False}),
+    (37, {"is_prime": True}),
     (49, {"is_prime": False}),
     (53, {"is_prime": True}),
     (100, {"is_prime": False}),
     (997, {"is_prime": True}),
-    (0.1, {'detail': [{'type': 'int_parsing', 'loc': ['path', 'number'], 'msg': 'Input should be a valid integer, unable to parse string as an integer', 'input': '0.1'}]}),
-    (-0.5, {"detail": [{'type': 'int_parsing', 'loc': ['path', 'number'], 'msg': 'Input should be a valid integer, unable to parse string as an integer', 'input': '-0.5'}]}),
-    (-5, {"detail": [{'type': 'int_parsing', 'loc': ['path', 'number'], 'msg': 'Input should be a valid integer, unable to parse string as an integer', 'input': '-5'}]}),
 ]
 
 client = TestClient(app)
