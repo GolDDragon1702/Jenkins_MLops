@@ -76,12 +76,12 @@ pipeline {
             }
         }
         
-        stage('Check pytest') {
+        stage('Install pytest') {
             steps {
                 sh '''
-                pip install pytest
-                which pytest
-                pytest --version
+                sudo apt install pipx
+                pipx install pytest
+                pipx run pytest --version
                 '''
             }
         }
