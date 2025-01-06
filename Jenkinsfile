@@ -75,6 +75,16 @@ pipeline {
                 }
             }
         }
+        
+        stage('Check pytest') {
+            steps {
+                sh '''
+                which pytest
+                pytest --version
+                '''
+            }
+        }
+
         stage('Run Tests') {
             steps {
                 script {
