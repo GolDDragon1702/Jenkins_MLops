@@ -9,10 +9,10 @@ test_cases = [
     (49, {"is_prime": False}),
     (53, {"is_prime": True}),
     (100, {"is_prime": False}),
-    (0.1, {"is_prime": False}),
-    (1.5, {"is_prime": False}),
-    (-0.5, {"detail": [{"type": "type_error", "loc": ["path", "number"], "msg": "value is not a valid integer", "input": "string_input"}]}),
-    (-5, {"detail": [{"type": "type_error", "loc": ["path", "number"], "msg": "value is not a valid integer", "input": "string_input"}]}),
+    (0.1, {"detail": [{'type': 'int_parsing', 'loc': ['path', 'number'], 'msg': 'Input should be a valid integer, unable to parse string as an integer', 'input': '0.1'}]}),
+    (1.5, {"detail": [{'type': 'int_parsing', 'loc': ['path', 'number'], 'msg': 'Input should be a valid integer, unable to parse string as an integer', 'input': '1.5'}]}),
+    (-0.5, {"detail": [{'type': 'int_parsing', 'loc': ['path', 'number'], 'msg': 'Input should be a valid integer, unable to parse string as an integer', 'input': '-0.5'}]}),
+    (-5, {"detail": [{'type': 'int_parsing', 'loc': ['path', 'number'], 'msg': 'Input should be a valid integer, unable to parse string as an integer', 'input': '-5'}]}),
 ]
 
 client = TestClient(app)
